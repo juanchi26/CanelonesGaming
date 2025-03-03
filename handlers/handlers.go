@@ -34,6 +34,10 @@ func Manejadores(path string, method string, body string, headers map[string]str
 		fmt.Println("Entrando a ProcesoCategory con método:", method)
 		return ProcesoCategory(body, path, method, user, idn, request)
 	case "orde":
+		return ProcesoOrder(body, path, method, user, idn, request)
+
+	default:
+		fmt.Println("Path no reconocido:", path[0:4])
 	}
 
 	return 400, "Method Invalido"
