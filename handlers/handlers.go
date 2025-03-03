@@ -30,7 +30,7 @@ func Manejadores(path string, method string, body string, headers map[string]str
 		return ProcesoStock(body, path, method, user, idn, request)
 	case "addr":
 		return ProcesoAddress(body, path, method, user, idn, request)
-	case "cate":
+	case "Cane":
 		return ProcesoCategory(body, path, method, user, idn, request)
 	case "orde":
 	}
