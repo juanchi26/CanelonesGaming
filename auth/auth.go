@@ -54,6 +54,7 @@ func ValidoToken(token string) (bool, error, string) {
 		return false, err, "el Token a Expirado!!"
 	}
 
+	fmt.Println(string(tkj.Username))
 	return true, nil, string(tkj.Username)
 
 }
