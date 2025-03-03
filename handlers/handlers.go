@@ -21,23 +21,23 @@ func Manejadores(path string, method string, body string, headers map[string]str
 		return statusCode, user
 	}
 
-	switch path[0:4] {
-	case "user":
+	switch path[0:5] {
+	case "/user":
 		return ProcesoUsers(body, path, method, user, id, request)
-	case "prod":
+	case "/prod":
 		return ProcesoProducts(body, path, method, user, idn, request)
-	case "stoc":
+	case "/stoc":
 		return ProcesoStock(body, path, method, user, idn, request)
-	case "addr":
+	case "/addr":
 		return ProcesoAddress(body, path, method, user, idn, request)
-	case "cate":
+	case "/cate":
 		fmt.Println("Entrando a ProcesoCategory con método:", method)
 		return ProcesoCategory(body, path, method, user, idn, request)
-	case "orde":
+	case "/orde":
 		return ProcesoOrder(body, path, method, user, idn, request)
 
 	default:
-		fmt.Println("Path no reconocido:", path[0:4])
+		fmt.Println("Path no reconocido:", path[0:5])
 	}
 
 	return 400, "Method Invalido"
