@@ -17,6 +17,9 @@ func Manejadores(path string, method string, body string, headers map[string]str
 
 	isOK, statusCode, user := ValidoAuthorization(path, method, headers)
 
+	fmt.Println("Usuario validado:", user)
+	fmt.Println("Headers recibidos:", headers)
+
 	if !isOK {
 		return statusCode, user
 	}
