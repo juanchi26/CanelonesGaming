@@ -31,6 +31,7 @@ func Manejadores(path string, method string, body string, headers map[string]str
 	case "addr":
 		return ProcesoAddress(body, path, method, user, idn, request)
 	case "cate":
+		fmt.Println("Entrando a ProcesoCategory con método:", method)
 		return ProcesoCategory(body, path, method, user, idn, request)
 	case "orde":
 	}
