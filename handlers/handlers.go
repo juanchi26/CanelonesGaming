@@ -72,10 +72,9 @@ func ValidoAuthorization(path string, method string, headers map[string]string) 
 		}
 	}
 
-	fmt.Println("user > " + msg)
 	fmt.Println("Token OK")
 
-	return true, 200, ""
+	return true, 200, msg
 
 }
 
