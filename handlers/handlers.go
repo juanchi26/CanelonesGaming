@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/juanchi26/CanelonesGaming/auth"
+	"github.com/juanchi26/CanelonesGaming/routers"
 )
 
 func Manejadores(path string, method string, body string, headers map[string]string, request events.APIGatewayV2HTTPRequest) (int, string) {
@@ -78,6 +79,11 @@ func ProcesoProducts(body string, path string, method string, user string, id in
 }
 
 func ProcesoCategory(body string, path string, method string, user string, id int, request events.APIGatewayV2HTTPRequest) (int, string) {
+
+	switch method {
+	case "POST":
+		return routers.InsertCategory(body, user)
+	}
 
 	return 400, "Method invalid"
 }
