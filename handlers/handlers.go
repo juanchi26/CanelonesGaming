@@ -85,7 +85,7 @@ func ProcesoCategory(body string, path string, method string, user string, id in
 		return routers.InsertCategory(body, user)
 	}
 
-	return 400, "Method invalido"
+	return 400, "Method invalid"
 }
 
 func ProcesoStock(body string, path string, method string, user string, id int, request events.APIGatewayV2HTTPRequest) (int, string) {
