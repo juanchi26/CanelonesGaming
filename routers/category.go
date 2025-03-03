@@ -8,7 +8,7 @@ import (
 	"github.com/juanchi26/CanelonesGaming/models"
 )
 
-func InsertCategory(body string, User string) (int, string) {
+func InsertCategory(body string, user string) (int, string) {
 	var t models.Category
 
 	err := json.Unmarshal([]byte(body), &t)
@@ -25,7 +25,7 @@ func InsertCategory(body string, User string) (int, string) {
 		return 400, "Debe especificar el path" + err.Error()
 	}
 
-	isAdmin, msg := bd.IsAdmin(User)
+	isAdmin, msg := bd.IsAdmin(user)
 
 	if !isAdmin {
 		return 400, msg

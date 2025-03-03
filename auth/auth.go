@@ -29,7 +29,7 @@ func ValidoToken(token string) (bool, error, string) {
 		return false, nil, "El token no es Valido"
 	}
 
-	userInfo, err := base64.RawURLEncoding.DecodeString(parts[1])
+	userInfo, err := base64.StdEncoding.DecodeString(parts[1])
 
 	if err != nil {
 		fmt.Println("No se pudo decodificar la parte del token :", err.Error())
@@ -54,7 +54,6 @@ func ValidoToken(token string) (bool, error, string) {
 		return false, err, "el Token a Expirado!!"
 	}
 
-	fmt.Println(string(tkj.Username))
 	return true, nil, string(tkj.Username)
 
 }
