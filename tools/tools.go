@@ -2,6 +2,7 @@ package tools
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -16,4 +17,10 @@ func FechaMySQL() string { //formatea la hora para mysql
 		t.Minute(),
 		t.Second(),
 	)
+}
+
+func EscapeString(t string) string {
+	desc := strings.ReplaceAll(t, "'", "")
+	desc = strings.ReplaceAll(desc, "\"", "")
+	return desc
 }
