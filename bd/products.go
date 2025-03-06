@@ -104,7 +104,7 @@ func UpdateProducts(p models.Product) error {
 	sentencia = tools.ArmoSentencia(sentencia, "Prod_Description", "S", 0, 0, p.ProdDescription)
 	sentencia = tools.ArmoSentencia(sentencia, "Prod_Price", "F", 0, p.ProdPrice, "")
 	sentencia = tools.ArmoSentencia(sentencia, "Prod_CategoryId", "N", p.ProdCategId, 0, "")
-	sentencia = tools.ArmoSentencia(sentencia, "Prod_Stock", "S", p.ProdStock, 0, "")
+	sentencia = tools.ArmoSentencia(sentencia, "Prod_Stock", "N", p.ProdStock, 0, "")
 	sentencia = tools.ArmoSentencia(sentencia, "Prod_Path", "S", 0, 0, p.ProdPath)
 
 	sentencia += " WHERE Prod_Id = " + strconv.Itoa(p.ProdId)
