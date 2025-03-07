@@ -62,3 +62,20 @@ func UpdateProducts(body string, user string, id int) (int, string) {
 
 	return 200, "Update OK"
 }
+
+func DeleteProducts(user string, id int) (int, string) {
+	isAdmin, msg := bd.IsAdmin(user)
+
+	if !isAdmin {
+		return 400, msg
+	}
+
+	err2 := bd.DeleteProducts(id)
+
+	if err2 != nil {
+		return 400, "Ocurrio un error al intentar realizar el DELETE del Producto " + strconv.Itoa(id) + " >" + err2.Error()
+	}
+
+	return 200, "DELETE OK"
+
+}

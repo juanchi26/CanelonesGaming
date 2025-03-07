@@ -88,6 +88,8 @@ func ProcesoProducts(body string, path string, method string, user string, id in
 		return routers.InsertProduct(body, user)
 	case "PUT":
 		return routers.UpdateProducts(body, user, id)
+	case "DELETE":
+		return routers.DeleteProducts(user, id)
 	}
 
 	return 400, "Method invalid"
