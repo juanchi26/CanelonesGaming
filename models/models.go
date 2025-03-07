@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type SecretRDSjson struct {
 	Username            string `json:"username"` //con backsticks
 	Password            string `json:"password"`
@@ -21,17 +23,17 @@ type Category struct {
 }
 
 type Product struct {
-	ProdId          int     `json:"prodID"`
-	ProdTitle       string  `json:"prodTitle"`
-	ProdDescription string  `json:"prodDescription"`
-	ProdCreatedAt   string  `json:"prodCreatedAt"`
-	ProdUpdated     string  `json:"prodUpdated"`
-	ProdPrice       float64 `json:"prodPrice,omitempty"`
-	ProdStock       int     `json:"prodStock"`
-	ProdCategId     int     `json:"prodCategId"`
-	ProdPath        string  `json:"prodPath"`
-	ProdSearch      string  `json:"search,omitempty"`
-	ProdCategPath   string  `json:"categPath,omitempty"`
+	ProdId          int        `json:"prodID"`
+	ProdTitle       string     `json:"prodTitle"`
+	ProdDescription string     `json:"prodDescription"`
+	ProdCreatedAt   *time.Time `json:"prodCreatedAt"`
+	ProdUpdated     *time.Time `json:"prodUpdated"`
+	ProdPrice       float64    `json:"prodPrice,omitempty"`
+	ProdStock       int        `json:"prodStock"`
+	ProdCategId     int        `json:"prodCategId"`
+	ProdPath        string     `json:"prodPath"`
+	ProdSearch      string     `json:"search,omitempty"`
+	ProdCategPath   string     `json:"categPath,omitempty"`
 }
 
 type ProductResp struct {
