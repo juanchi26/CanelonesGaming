@@ -269,8 +269,8 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 		p.ProdId = int(ProdId.Int32)
 		p.ProdTitle = ProdTitle.String
 		p.ProdDescription = ProdDescription.String
-		p.ProdCreatedAt = ProdCreatedAt.Time.String()
-		p.ProdUpdated = ProdUpdated.Time.String()
+		p.ProdCreatedAt = ProdCreatedAt.Time.Format("2006-01-02 15:04:05")
+		p.ProdUpdated = ProdUpdated.Time.Format("2006-01-02 15:04:05")
 		p.ProdPrice = ProdPrice.Float64
 		p.ProdPath = ProdPath.String
 		p.ProdCategId = int(ProdCategoryId.Int32)
