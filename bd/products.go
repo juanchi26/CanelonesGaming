@@ -268,8 +268,8 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 		p.ProdId = int(ProdId.Int32)
 		p.ProdTitle = ProdTitle.String
 		p.ProdDescription = ProdDescription.String
-		p.ProdCreatedAt = &ProdCreatedAt.Time
-		p.ProdUpdated = &ProdUpdated.Time
+		p.ProdCreatedAt = ProdCreatedAt.Time.String()
+		p.ProdUpdated = ProdUpdated.Time.String()
 		p.ProdPrice = ProdPrice.Float64
 		p.ProdPath = ProdPath.String
 		p.ProdCategId = int(ProdCategoryId.Int32)
@@ -280,6 +280,6 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 	Resp.TotalItems = registros
 	Resp.Data = Prod
 
-	fmt.Println("SelectProducts > EJECUCION EXITOSA")
+	fmt.Println("Select Product > Ejecución Exitosa")
 	return Resp, nil
 }
