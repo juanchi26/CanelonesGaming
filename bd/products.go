@@ -261,7 +261,6 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 		var ProdStock sql.NullInt32
 
 		err := rows.Scan(&ProdId, &ProdTitle, &ProdDescription, &ProdCreatedAt, &ProdUpdated, &ProdPrice, &ProdPath, &ProdCategoryId, &ProdStock)
-
 		if err != nil {
 			return Resp, err
 		}
@@ -269,13 +268,12 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 		p.ProdId = int(ProdId.Int32)
 		p.ProdTitle = ProdTitle.String
 		p.ProdDescription = ProdDescription.String
-		p.ProdCreatedAt = ProdCreatedAt.Time
-		p.ProdUpdated = ProdUpdated.Time
+		p.ProdCreatedAt = ProdCreatedAt.Time.String()
+		p.ProdUpdated = ProdUpdated.Time.String()
 		p.ProdPrice = ProdPrice.Float64
 		p.ProdPath = ProdPath.String
 		p.ProdCategId = int(ProdCategoryId.Int32)
 		p.ProdStock = int(ProdStock.Int32)
-
 		Prod = append(Prod, p)
 	}
 
