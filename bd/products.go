@@ -162,11 +162,9 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 
 	var sentencia string
 	var sentenciaCount string
-	var where string
-	var limit string
+	var where, limit, join string
 
 	sentencia = "SELECT Prod_Id, Prod_Title, Prod_Description, Prod_CreatedAt, Prod_Updated, Prod_Price, Prod_Path, Prod_CategoryId, Prod_Stock FROM products "
-
 	sentenciaCount = "SELECT count(*) as registros FROM products "
 
 	switch choice {
@@ -179,7 +177,7 @@ func SelectProducts(p models.Product, choice string, page int, pageSize int, ord
 	case "U":
 		where = " WHERE UCASE(Prod_Path) LIKE '%" + strings.ToUpper(p.ProdPath) + "%' "
 	case "K":
-		join := " JOIN category ON Prod_CategoryId = Categ_Id AND Categ_Path LIKE '%" + strings.ToUpper(p.ProdCategPath) + "%' "
+		join = " JOIN category ON Prod_CategoryId = Categ_Id AND Categ_Path LIKE '%" + strings.ToUpper(p.ProdCategPath) + "%' "
 		sentencia += join
 		sentenciaCount += join
 	}
