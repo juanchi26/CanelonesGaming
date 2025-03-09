@@ -49,3 +49,35 @@ func InsertAddress(body string, user string) (int, string) {
 	return 200, "InsertAddress OK"
 
 }
+
+func UpdateAddress(body string, user string, id int) (int, string) {
+	var t models.Address
+
+	err := json.Unmarshal([]byte(body), &t)
+
+	if err != nil {
+		return 400, "Error en los datos recibidos" + err.Error()
+	}
+
+	t.AddId = id
+
+	var encontrado bool
+
+	err, encontrado = bd.AddressExist(user, t.AddId)
+
+	if !encontrado {
+		if err != nil {
+			return 400, "Ocurrio un error al intentar buscar la dirección para el ID de usuario" + user + " > " + err.Error()
+		}
+		return 400, "No se encontro la dirección para el ID de usuario" + user
+	}
+
+	err = bd.UpdateAddress(t)
+
+	if err != nil {
+		return 400, "Ocurrio un error al intentar actualizar la dirección" + user + " > " + err.Error()
+	}
+
+	return 200, "UpdateAddress OK"
+
+}
