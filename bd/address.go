@@ -16,7 +16,7 @@ func InsertAddress(t models.Address, user string) error {
 	}
 	defer Db.Close()
 
-	sentencia := "INSERT INTO address (add_UserId, add_Address, add_City, add_State, add_PostalCode, add_Phone, add_Title, add_Name)"
+	sentencia := "INSERT INTO addresses (add_UserId, add_Address, add_City, add_State, add_PostalCode, add_Phone, add_Title, add_Name)"
 
 	sentencia += " VALUES ('" + user + "','" + t.AddAddress + "','" + t.AddCity + "','" + t.AddState + "','" + t.AddPostalCode + "','" + t.AddPhone + "','" + t.AddTitle + "','" + t.AddName + "')"
 
