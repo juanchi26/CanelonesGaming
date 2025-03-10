@@ -102,3 +102,21 @@ func DeleteAddress(user string, id int) (int, string) {
 	return 200, "DeleteAddress OK"
 
 }
+
+func SelectAddress(user string) (int, string) {
+
+	addr, err := bd.SelectAddress(user)
+
+	if err != nil {
+		return 400, "Ocurrio un error al intentar buscar la dirección para el ID de usuario" + user + " > " + err.Error()
+	}
+
+	respJson, err := json.Marshal(addr)
+
+	if err != nil {
+		return 500, "Ocurrio un error al intentar convertir a JSON la dirección para el ID de usuario" + user + " > " + err.Error()
+	}
+
+	return 200, string(respJson)
+
+}
