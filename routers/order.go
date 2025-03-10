@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	//github.com/aws/aws-lambda-go/events
+	"github.com/aws/aws-lambda-go/events"
 	"github.com/juanchi26/CanelonesGaming/bd"
 	"github.com/juanchi26/CanelonesGaming/models"
 )
@@ -61,4 +61,41 @@ func ValidOrder(o models.Orders) (bool, string) {
 	}
 
 	return true, ""
+}
+
+func SelectOrders(user string, request events.APIGatewayV2HTTPRequest) (int, string) {
+
+	var fechaDesde, fechaHasta string
+	var orderId int
+	var page int
+
+	if len(request.QueryStringParameters["fechaDesde"]) > 0 {
+		fechaDesde = request.QueryStringParameters["fechaDesde"]
+	}
+
+	if len(request.QueryStringParameters["fechaHasta"]) > 0 {
+		fechaHasta = request.QueryStringParameters["fechaHasta"]
+	}
+
+	if len(request.QueryStringParameters["page"]) > 0 {
+		page, _ = strconv.Atoi(request.QueryStringParameters["page"])
+	}
+
+	if len(request.QueryStringParameters["orderId"]) > 0 {
+		orderId, _ = strconv.Atoi(request.QueryStringParameters["orderId"])
+	}
+
+	result, err := bd.SelectOrders(user, fechaDesde, fechaHasta, page, orderId)
+
+	if err != nil {
+		return 400, "Ocurrio un error al intentar capturar los registro de ordenes del" + fechaDesde + "al" + fechaHasta + " > " + err.Error()
+	}
+
+	Orders, err2 := json.Marshal(result)
+
+	if err2 != nil {
+		return 400, "Ocurrio un error al intentar convertir el JSON el registro de orden"
+	}
+
+	return 200, string(Orders)
 }
