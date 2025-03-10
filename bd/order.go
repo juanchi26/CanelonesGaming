@@ -137,7 +137,7 @@ func SelectOrders(user string, fechaDesde string, fechaHasta string, page int, o
 
 		var rowsD *sql.Rows
 
-		sentenciaD := "SELECT OD_Id, OD_ProdId, OD_Quantity, OD_Price FROM orders_details WHERE OD_OrderID = " + strconv.Itoa(Order.Order_Id)
+		sentenciaD := "SELECT OD_Id, OD_ProdId, OD_Quantity, OD_Price FROM orders_detail WHERE OD_OrderID = " + strconv.Itoa(Order.Order_Id)
 
 		rowsD, err = Db.Query(sentenciaD)
 
